@@ -1,0 +1,139 @@
+<div class="container">
+
+  <div class="row">
+    <div class="col-md">
+      <h1>Componente 2</h1>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md pt-3">
+      <div class="row">
+
+        <div class="col-md">
+          <div class="form-group">
+            <label for="txtInput1">Input 1</label>
+            <input type="text" class="form-control" id="txtInput1" placeholder="Insira o valor..." [(ngModel)]="linha.campo_01">
+          </div>
+        </div>
+
+        <div class="col-md">
+          <div class="form-group">
+            <label for="txtInput2">Input 2</label>
+            <input type="text" class="form-control" id="txtInput2" placeholder="Insira o valor..." [(ngModel)]="linha.campo_02">
+
+          </div>
+        </div>
+
+        <div class="col-md">
+          <div class="form-group">
+            <label for="txtInput3">Input 3</label>
+            <input type="text" class="form-control" id="txtInput3" placeholder="Insira o valor..." [(ngModel)]="linha.campo_03">
+
+          </div>
+        </div>
+
+        <div class="col-md">
+          <div class="form-group">
+            <label for="txtInput4">Input 4</label>
+            <input type="text" class="form-control" id="txtInput4" placeholder="Insira o valor..." [(ngModel)]="linha.campo_04">
+
+          </div>
+        </div>
+
+      </div>
+
+      <div class="row">
+
+        <div class="col-md">
+          <div class="form-group">
+            <label for="txtInput5">Input 5</label>
+            <input type="text" class="form-control" id="txtInput5" placeholder="Insira o valor..." [(ngModel)]="linha.campo_05">
+
+          </div>
+        </div>
+
+        <div class="col-md">
+          <div class="form-group">
+            <label for="txtInput6">Input 6</label>
+            <input type="text" class="form-control" id="txtInput6" placeholder="Insira o valor..." [(ngModel)]="linha.campo_06">
+
+          </div>
+        </div>
+
+        <div class="col-md">
+          <div class="form-group">
+            <label for="txtInput7">Input 7</label>
+            <input type="text" class="form-control" id="txtInput7" placeholder="Insira o valor..." [(ngModel)]="linha.campo_07">
+
+          </div>
+        </div>
+
+        <div class="col-md">
+          <div class="form-group">
+            <label for="ddlCategoria">Categoria</label>
+            <select class="form-control" id="ddlCategoria" [(ngModel)]="categoria">
+              <option *ngFor="let cat of categorias" [ngValue]="cat">{{cat.nome}}</option>
+            </select>
+          </div>
+        </div>
+
+      </div>
+      <div class="row">
+        <div class="col-md">
+          <button type="button" class="btn btn-primary float-right" (click)="inserir()">Adicionar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr [hidden]="categoriasLinhas.length == 0" />
+
+  <div class="row" [hidden]="categoriasLinhas.length == 0">
+    <div class="col-md">
+      <h2>Itens Adicionados</h2>
+    </div>
+  </div>
+
+  <ngb-accordion [activeIds]="activeIds">
+    <ngb-panel [title]="categoriaLinha.categoria.nome" *ngFor="let categoriaLinha of categoriasLinhas"
+      [id]="'panel-' + categoriaLinha.categoria.id">
+      <ng-template ngbPanelContent>
+        <table class="table table-striped table-bordered table-hover">
+          <thead>
+            <tr class="thead-dark">
+              <th scope="col">#</th>
+              <th scope="col">Input1</th>
+              <th scope="col">Input2</th>
+              <th scope="col">Input3</th>
+              <th scope="col">Input4</th>
+              <th scope="col">Input5</th>
+              <th scope="col">Input6</th>
+              <th scope="col">Input7</th>
+              <th scope="col" class="text-center">Ações</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr *ngFor="let linhaTemp of categoriaLinha.linhas; let i = index;">
+              <th scope="row">{{i + 1}}</th>
+              <td>{{linhaTemp.campo_01}}</td>
+              <td>{{linhaTemp.campo_02}}</td>
+              <td>{{linhaTemp.campo_03}}</td>
+              <td>{{linhaTemp.campo_04}}</td>
+              <td>{{linhaTemp.campo_05}}</td>
+              <td>{{linhaTemp.campo_06}}</td>
+              <td>{{linhaTemp.campo_07}}</td>
+              <td class="text-center">
+                <button class="btn btn-sm btn-info" type="button" (click)="excluir(categoriaLinha, linhaTemp)">
+                  Excluir
+                </button></td>
+            </tr>
+          </tbody>
+        </table>
+      </ng-template>
+    </ngb-panel>
+
+  </ngb-accordion>
+
+</div>
